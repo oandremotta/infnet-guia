@@ -19,6 +19,10 @@ docker-compose up
 docker-compose up -f docker-compose.development.yaml
 ```
 
+### CICD
+Para CICD, o projeto faz uso do GitHub Actions, e para cada nova versão pasta apenas trocar o valor da mesma no package.json. A Action irá automaticamente pegar esse valor e atribuir a tag da imagem que for gerada.
+Será necessário definir dois secrets, nas configurações do seu projeto no GitHub, com os valores necessários para acessar o seu docker hub: `DOCKER_USERNAME` & `DOCKER_PASSWORD`.
+
 
 ### Kubernetes
 #### Minikube
@@ -42,3 +46,8 @@ kubectl port-forward svc/guia-app-service 3000:3000
 ```
 
 Acesse a aplicação em http://localhost:3000
+
+##### ⚠️ **Atenção:** Se preferir ver um Dashboard, abra uma nova janela do terminal e rode o comando a seguir 
+```
+minikube dashboard
+```
