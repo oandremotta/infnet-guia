@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: guia-app
-          image: raphaeltorresinfnet/infnet-guia:1.0.0
+          image: raphaeltorresinfnet/infnet-guia:latest # não recomendado, só usando latest pra desenvolvimento
           ports:
             - containerPort: 3000
           readinessProbe:
