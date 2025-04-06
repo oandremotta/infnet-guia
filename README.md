@@ -57,5 +57,5 @@ kubectl apply -k k8s/monitoring
 minikube service grafana-service -n monitoring
 
 # Usuário: admin
-# Senha: admin
+# Senha: test
 ```
