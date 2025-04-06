@@ -6,9 +6,6 @@ on:
       - main
     paths-ignore:
       - 'k8s/**'
-  pull_request:
-    paths-ignore:
-      - 'k8s/**'
 
 jobs:
   build-and-push:
