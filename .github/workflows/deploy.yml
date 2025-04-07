@@ -38,9 +38,5 @@ jobs:
           docker build -t oandremotta/guia-infnet:latest .
           docker push oandremotta/guia-infnet:latest
 
-      - name: Deploy no Kubernetes (sem validação)
-        run: |
-          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
-          export KUBECONFIG=$PWD/kubeconfig.yaml
-          kubectl apply -f deployment.yaml --validate=false
-          kubectl apply -f service.yaml --validate=false
+      - name: Decode kubeconfig
+        run: echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 -d_
