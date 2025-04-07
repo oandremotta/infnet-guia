@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infnet-guia-website
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: infnet-guia
+  template:
+    metadata:
+      labels:
+        app: infnet-guia
+    spec:
+      containers:
+        - name: infnet-guia-container
+          image: oandremotta/guia-infnet:latest
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /api/ready
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
