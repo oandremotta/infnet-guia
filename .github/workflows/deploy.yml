@@ -13,26 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do código
+      # 1. Checkout do repositório
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      # 2. Instala Node.js
+      # 2. Instala Node.js (sem cache de npm)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm'
 
-      # 3. Instala dependências
+      # 3. Instala as dependências (forçando resolução de conflitos)
       - name: Instala dependências
         run: npm install --legacy-peer-deps
 
-      # 4. (Opcional) Lint ou testes
-      - name: Lint (opcional)
-        run: echo "Você pode adicionar lint aqui se quiser."
+      # 4. Lint (ajuste se necessário)
+      - name: Lint
+        run: npm run lint
 
-      # 5. Build do projeto (se aplicável)
+      # 5. Build do projeto
       - name: Build do projeto
         run: npm run build
 
@@ -49,7 +48,7 @@ jobs:
           docker build -t oandremotta/guia-infnet:latest .
           docker push oandremotta/guia-infnet:latest
 
-      # 8. Deploy no Kubernetes
+      # 8. Deploy no Kubernetes (opcional)
       - name: Deploy no Kubernetes
         run: |
           kubectl apply -f deployment.yaml
