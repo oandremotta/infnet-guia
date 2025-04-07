@@ -39,4 +39,4 @@ jobs:
           docker push oandremotta/guia-infnet:latest
 
       - name: Decode kubeconfig
-        run: echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 -d_
+        run: echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 -d > kubeconfig.yaml
